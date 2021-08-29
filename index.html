@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>calculatePricePerCapacity</title>
+  </head>
+  <body>
+    <h1>용량 가격 계산기</h1>
+    <form>
+      <h3>제품용량</h3>
+      <p>
+        <input
+          id="Xml"
+          type="number"
+          placeholder="여기에 제품용량을 적으세요"
+        />
+        ML
+      </p>
+
+      <h3>제품가격</h3>
+      <p>
+        <input id="Xwon" type="text" placeholder="여기에 제품가격을 적으세요" />
+        원
+      </p>
+
+      <h3>계산할 용량</h3>
+      <p>
+        <input
+          id="Yml"
+          type="number"
+          placeholder="여기에 계산할 용량값을 적으세요"
+        />
+        ML
+      </p>
+
+      <button id="btn">계산버튼</button>
+    </form>
+    <h2>
+      계산결과
+      <h4></h4>
+    </h2>
+  </body>
+  <style>
+    input {
+      height: 30px;
+      width: 200px;
+    }
+    button {
+      border-radius: 1rem;
+      font-size: 2rem;
+      height: 7rem;
+      width: 13rem;
+    }
+    p {
+      margin-bottom: 2rem;
+    }
+  </style>
+  <script>
+    const btn = document.querySelector("button");
+    const originMl = document.querySelector("#Xml");
+    const calMl = document.querySelector("#Yml");
+    const won = document.querySelector("#Xwon");
+    const calResult = document.querySelector("h4");
+
+    btn.addEventListener("click", calPricePerCap);
+
+    function calPricePerCap(e) {
+      e.preventDefault();
+      calculatePricePerCapacity(originMl.value, won.value, calMl.value);
+    }
+
+    const calculatePricePerCapacity = (ml, won, valueMl) => {
+      const resurt = won / (ml / valueMl);
+      const moneyDropDecimal = resurt.toFixed(2);
+
+      calResult.innerHTML = `용량이 ${valueMl}ml일 때 가격은 약 ${moneyDropDecimal}원 입니다.`;
+    };
+  </script>
+</html>
