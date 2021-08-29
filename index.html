@@ -9,7 +9,7 @@
   <body>
     <h1>용량 가격 계산기</h1>
     <form>
-      <h3>제품용량</h3>
+      <h2>제품용량</h2>
       <p>
         <input
           id="Xml"
@@ -19,13 +19,17 @@
         ML
       </p>
 
-      <h3>제품가격</h3>
+      <h2>제품가격</h2>
       <p>
-        <input id="Xwon" type="text" placeholder="여기에 제품가격을 적으세요" />
+        <input
+          id="Xwon"
+          type="number"
+          placeholder="여기에 제품가격을 적으세요"
+        />
         원
       </p>
 
-      <h3>계산할 용량</h3>
+      <h2>계산할 용량</h2>
       <p>
         <input
           id="Yml"
@@ -43,17 +47,21 @@
     </h2>
   </body>
   <style>
+    h1 {
+      font-size: 2.5rem;
+    }
     input {
       height: 30px;
-      width: 200px;
+      width: 250px;
     }
     button {
       border-radius: 1rem;
       font-size: 2rem;
-      height: 7rem;
+      height: 6rem;
       width: 13rem;
     }
     p {
+      margin-top: -0.5rem;
       margin-bottom: 2rem;
     }
   </style>
