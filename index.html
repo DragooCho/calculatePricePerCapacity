@@ -7,7 +7,7 @@
     <title>calculatePricePerCapacity</title>
   </head>
   <body>
-    <h1>용량 가격 계산기</h1>
+    <h1>용량 대비 가격 계산기</h1>
     <form>
       <h2>제품용량</h2>
       <p>
@@ -42,8 +42,8 @@
       <button id="btn">계산버튼</button>
     </form>
     <h2>
-      계산결과
-      <h4></h4>
+      <p class="result_window_title">계산대기중</p>
+      <h4>🤔용량이 000일 때 가격은 000원 입니다.🤔</h4>
     </h2>
   </body>
   <style>
@@ -68,22 +68,39 @@
   <script>
     const btn = document.querySelector("button");
     const originMl = document.querySelector("#Xml");
-    const calMl = document.querySelector("#Yml");
+    const resultMl = document.querySelector("#Yml");
     const won = document.querySelector("#Xwon");
     const calResult = document.querySelector("h4");
+    const resultTitle = document.querySelector(".result_window_title");
 
-    btn.addEventListener("click", calPricePerCap);
+    function changeResultTitle() {
+      resultTitle.innerHTML = "계산결과";
+    }
 
-    function calPricePerCap(e) {
-      e.preventDefault();
-      calculatePricePerCapacity(originMl.value, won.value, calMl.value);
+    function failedCalculationsText() {
+      calResult.innerHTML = `😢용량과 가격을 모두 적어주세요.😢`;
+    }
+
+    function outputPostResultText(volume, finalValue) {
+      calResult.innerHTML = `😉용량이 ${volume}ml일 때 가격은 ${finalValue}원 입니다.😉`;
     }
 
     const calculatePricePerCapacity = (ml, won, valueMl) => {
-      const resurt = won / (ml / valueMl);
-      const moneyDropDecimal = resurt.toFixed(2);
-
-      calResult.innerHTML = `용량이 ${valueMl}ml일 때 가격은 약 ${moneyDropDecimal}원 입니다.`;
+      if (ml === "" || won === "" || valueMl === "") {
+        failedCalculationsText();
+      } else {
+        const result = won / (ml / valueMl);
+        const moneyDropDecimal = result.toFixed(2);
+        outputPostResultText(valueMl, moneyDropDecimal);
+      }
     };
+
+    function calPricePerCap(e) {
+      e.preventDefault();
+      changeResultTitle();
+      calculatePricePerCapacity(originMl.value, won.value, resultMl.value);
+    }
+
+    btn.addEventListener("click", calPricePerCap);
   </script>
 </html>
